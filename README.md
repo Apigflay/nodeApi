@@ -27,7 +27,9 @@ node_modules：项目所有依赖的库，以及存放 package.json 中安装的
 
 public：静态文件(css,js,img)
 
-routes：路由文件(MVC中的C,controller)
+api: 接口类文件  只负责处理逻辑数据并返回 
+
+routes：路由文件(MVC中的C,controller)  --做 render view 处理
 
 views：页面文件( Ejs 模板)
 
@@ -77,11 +79,11 @@ npm install nodemon --save-dev　　　　--save-dev：安装到本项目的dev�
 
 nodemon app
 
-#连接数据库  mysql
+#连接数据库  mysql 使用sql语句查询  多表多数据采用sql查询
 
 npm install mysql --save
 
-//---------测试代码----------
+
 <!-- // var mysql      = require('mysql');
 // var connection = mysql.createConnection({
 //   host     : 'qdm19942899.my3w.com',
@@ -105,5 +107,102 @@ npm install mysql --save
 
 可用
 
-# 改造 数据库连接  增 删 改 查 分页 搜索 排序
+# 改造 数据库连接  增 删 改 查 分页 搜索 排序  单表数据查询使用模型
 
+# 新建数据库配置信息文件
+module.exports = {
+  host     : 'qdm19942899.my3w.com',
+  user     : 'qdm19942899',
+  password : 'sql283251605.',
+  database : 'qdm19942899_db'
+}
+
+# 新建数据库查询文件
+
+var mysql = require('mysql');
+var dbConfig = require('./db.config'); 
+
+
+module.exports = {
+    query : function(sql,params,callback){
+        //每次使用的时候需要创建链接，数据操作完成之后要关闭连接
+        var connection = mysql.createConnection(dbConfig);        
+        connection.connect(function(err){
+            if(err){
+                console.log('数据库链接失败');
+                throw err;
+            }
+         //开始数据操作
+        connection.query( sql, params, function(err,results,fields ){
+           if(err){
+                console.log('数据操作失败');
+                throw err;
+            }
+            //将查询出来的数据返回给回调函数，这个时候就没有必要使用错误前置的思想了，因为我们在这个文件中已经对错误进行了处理，如果数据检索报错，直接就会阻塞到这个文件中
+            callback && callback(JSON.parse(JSON.stringify(results)), JSON.parse(JSON.stringify(fields)));
+            //results作为数据操作后的结果，fields作为数据库连接的一些字段，大家可以打印到控制台观察一下
+                //停止链接数据库，必须再查询语句后，要不然一调用这个方法，就直接停止链接，数据操作就会失败
+             connection.end(function(err){
+                  if(err){
+                      console.log('关闭数据库连接失败！');
+                      throw err;
+                  }
+              });
+           });
+       });
+    }
+};
+
+# GET 
+
+var express = require('express');
+var router = express.Router();
+var db = require("../db"); //引入数据库封装模块
+/* GET index page. */
+
+router.get('/', function(req, res, next) {
+//   console.log(req)
+//   console.log(res)
+//   console.log(next)
+  //查询users表
+  db.query("SELECT * FROM student",[],function(results,fields){
+    console.log(results);
+    // console.log(fields)
+    // res.render('index', { title: 'Express  hellow' });
+    if(req.query.id==1){
+      var a ='1';
+      res.send(a);
+    }else{
+      res.send(results);
+    }
+    
+  })
+  
+});
+
+/* GET index page. */
+
+router.post('/po', function(req, res, next) {
+//   console.log(req)
+//   console.log(res)
+//   console.log(next)
+    //查询users表
+    db.query("SELECT * FROM student",[],function(results,fields){
+    console.log(results);
+    // console.log(fields)
+    // res.render('index', { title: 'Express  hellow' });
+    if(req.query.id==1){
+        var a ='1';
+        res.send(a);
+    }else{
+        res.send(results);
+    }
+    
+    })
+    
+});
+
+module.exports = router;
+
+
+# POST
