@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 /* GET index page. */
 
 router.post('/po', function(req, res, next) {
-//   console.log(req)
+  console.log(req.body)
 //   console.log(res)
 //   console.log(next)
     //查询users表
