@@ -18,6 +18,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
 //页面渲染 routes for view
 var indexRouter = require('./routes/index');
 app.use('/', indexRouter);
