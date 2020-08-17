@@ -10,8 +10,13 @@ router.get('/', function(req, res, next) {
 //   console.log(res)
 //   console.log(next)
   //查询users表\
-  // JSON.parse({"id":1})
+  var a = JSON.stringify({"id":1});
+  console.log(a);
+  var b = JSON.parse(a);
+  console.log(b)
+
   console.log('即将解密')
+  console.log(JSON.parse(cryptojs.decrypt(decodeURIComponent(req.query.params))))
   console.log(cryptojs.decrypt(decodeURIComponent(req.query.params)))
   db.query("SELECT * FROM student",[],function(results,fields){
     console.log(results);

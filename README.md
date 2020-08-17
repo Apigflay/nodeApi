@@ -206,3 +206,27 @@ module.exports = router;
 
 
 # POST
+
+
+# 加密 解密 的使用
+
+commonjs 规范
+
+const CryptoJS = require('../crypto-js/crypto-js.js'); 
+
+module.exports = {
+    encrypt,
+    decrypt
+}
+
+var cryptojs = require('../../lib/js/GlobalFunction.js');//加密模块
+
+# JSON.parse  JSON.stringfy 
+
+npm install body-parser
+
+const bodyParser = require("body-parser");
+
+// 使用 body-parser 中间
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
