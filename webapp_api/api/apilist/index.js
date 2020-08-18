@@ -40,11 +40,13 @@ router.post('/po', function(req, res, next) {
 //   console.log(res)
 //   console.log(next)
     //查询users表
-    db.query("SELECT * FROM student",[],function(results,fields){
+     var params = JSON.parse(cryptojs.decrypt(decodeURIComponent(req.body.params)));
+     console.log(params)
+    db.query("SELECT * FROM student where username="+params.accountNumber+" and passwords="+params.password,[],function(results,fields){
     console.log(results);
     // console.log(fields)
     // res.render('index', { title: 'Express  hellow' });
-    console.log(req.body)
+
     if(req.query.id==1){
         var a ='1';
         res.send(a);
