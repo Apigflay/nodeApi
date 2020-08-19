@@ -20,7 +20,25 @@ function decrypt(word){
 	var decrypt = CryptoJS.AES.decrypt(word, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
     return CryptoJS.enc.Utf8.stringify(decrypt).toString();
 }
+/**
+ * 请求结构体 --api 100
+ * @param word
+ * @returns {*}
+ */
+function suc100(word,data){
+    return {code:100,msg:word,data:data}
+}
+/**
+ * 请求结构体 --api 101
+ * @param word
+ * @returns {*}
+ */
+function err101(word,data){
+    return {code:101,msg:word,data:data}
+}
 module.exports = {
     encrypt,
-    decrypt
+	decrypt,
+	suc100,
+	err101
 }
