@@ -9,9 +9,7 @@ router.get('/login', function(req, res, next) {
 //   console.log(req)
 //   console.log(res)
 //   console.log(next)
-  //查询users表\
-  // console.log(JSON.parse(GlobalFunction.decrypt(decodeURIComponent(req.query.params))))
-  // console.log(GlobalFunction.decrypt(decodeURIComponent(req.query.params)))
+  //查询users表
   var params = JSON.parse(GlobalFunction.decrypt(decodeURIComponent(req.query.params)));
   var sqlStr = "SELECT * FROM users where username='"+params.accountNumber+"' and passwords='"+params.password+"'";
   console.log(sqlStr)

@@ -36,9 +36,19 @@ function suc100(word,data){
 function err101(word,data){
     return {code:101,msg:word,data:data}
 }
+/**
+ * 请求构造sql查询语句 --fund
+ * @param word
+ * @returns {*}
+ */
+function whereSql(obj){//  后期使用
+	console.log(obj)
+    return '';
+}
 module.exports = {
     encrypt,
 	decrypt,
 	suc100,
-	err101
+	err101,
+	whereSql
 }
