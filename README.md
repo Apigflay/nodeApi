@@ -230,3 +230,5 @@ const bodyParser = require("body-parser");
 // 使用 body-parser 中间
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+然后可以使用JSON.parse  JSON.stringfy

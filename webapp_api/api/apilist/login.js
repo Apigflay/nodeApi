@@ -5,7 +5,7 @@ var GlobalFunction = require('../../lib/js/GlobalFunction.js');//加密模块
 
 /* GET index page. */
 
-router.get('/login', function(req, res, next) {
+router.get('/', function(req, res, next) {
 //   console.log(req)
 //   console.log(res)
 //   console.log(next)
