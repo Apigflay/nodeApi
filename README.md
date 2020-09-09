@@ -225,6 +225,7 @@ var cryptojs = require('../../lib/js/GlobalFunction.js');//加密模块
 
 npm install body-parser
 
+body-parser - node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。
 const bodyParser = require("body-parser");
 
 // 使用 body-parser 中间
@@ -232,3 +233,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 然后可以使用JSON.parse  JSON.stringfy
+
+# cookie 使用
+
+npm install cookie-parser --save
+cookie-parser - 这就是一个解析Cookie的工具。通过req.cookies可以取到传过来的cookie，并把它们转成对象。
+
+# multer 接口等文件处理
+
+npm install multer --save
+multer - node.js 中间件，用于处理 enctype="multipart/form-data"（设置表单的MIME编码）的表单数据。
+
+
+
+
+
+
+
+
+
+https://www.cnblogs.com/ydam/p/10983572.html
