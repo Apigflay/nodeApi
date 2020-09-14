@@ -243,6 +243,7 @@ cookie-parser - 这就是一个解析Cookie的工具。通过req.cookies可以�
 
 npm install multer --save
 multer - node.js 中间件，用于处理 enctype="multipart/form-data"（设置表单的MIME编码）的表单数据。
+接口第二个参数增加  upload.single('file'),
 
 
 

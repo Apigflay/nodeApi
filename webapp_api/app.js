@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // 在服务器端建立uploads文件夹用来接受上传的文件，并将uploads文件夹托管为静态文件
-app.use('/uploads', express.static(__dirname + '/uploads'))
+app.use('/statics', express.static(__dirname + '/uploads'))
 
 
 //页面渲染 routes for view
