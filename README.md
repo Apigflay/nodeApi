@@ -240,16 +240,59 @@ npm install cookie-parser --save
 cookie-parser - 这就是一个解析Cookie的工具。通过req.cookies可以取到传过来的cookie，并把它们转成对象。
 
 # multer 接口等文件处理
+// console.log(__dirname,__filename)//当前文件路径+文件名
 
+appjs 设置静态托管文件 
+app.use('/statics', express.static(__dirname + '/uploads'))
+
+#文件保存
 npm install multer --save
 multer - node.js 中间件，用于处理 enctype="multipart/form-data"（设置表单的MIME编码）的表单数据。
+
 接口第二个参数增加  upload.single('file'),
 
+//上传图片必备中间件及文件夹
+var path = require('path');
+const multer = require('multer')
+const upload = multer({dest:path.join(__dirname,'../../uploads')});
 
+console.log(req.file) // 为上传的文件
 
+#文件编辑
 
+var fs = require('fs');
+var time = new Date().getTime();
 
+fs.rename("uploads/"+req.file.filename,"uploads/"+time+'-'+req.file.originalname,function(err,data) {
+  if(err) {
+      console.log(err)
+  }else{
+      console.log("ok------------------------------------------保存并修改成功")
+      var imgSrc =":3000/statics/"+time+'-' + req.file.originalname;
+      var jsonData = {code:100,url:"/statics/"+time+'-' + req.file.originalname,ip:myHost+':3000'}
+      res.send(jsonData);
+  }
 
+})
+
+#系统信息  获取本机ip
+
+const os = require('os');
+function getIPAdress() {
+    var interfaces = os.networkInterfaces();
+    for (var devName in interfaces) {
+        var iface = interfaces[devName];
+        for (var i = 0; i < iface.length; i++) {
+            var alias = iface[i];
+            if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+                return alias.address;
+            }
+        }
+    }
+}
+const myHost = getIPAdress();
+
+# 权限 及 分类 
 
 
 
