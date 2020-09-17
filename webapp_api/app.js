@@ -36,10 +36,12 @@ app.all("*", function(req,res,next){
 })
 
 //分离路由
-var apiIndex = require('./api/apilist/login');
+var apiIndex = require('./api/apilist/login');//登录
 app.use('/api/login', apiIndex);
-var apiUpload = require('./api/apilist/upload');
+var apiUpload = require('./api/apilist/upload');//上传
 app.use('/api/upload', apiUpload);
+var apiTools = require('./api/apilist/tools');//上传
+app.use('/api/tools', apiTools);
 
 
 // catch 404 and forward to error handler

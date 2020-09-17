@@ -37,6 +37,19 @@ function err101(word,data){
     return {code:101,msg:word,data:data}
 }
 /**
+ * @getClientIP
+ * @desc 获取用户 ip 地址
+ * @param {Object} req - 请求
+ */
+function getClientIP(req) {
+    return req.headers['x-forwarded-for'] || // 判断是否有反向代理 IP
+        req.connection.remoteAddress || // 判断 connection 的远程 IP
+        req.socket.remoteAddress || // 判断后端的 socket 的 IP
+        req.connection.socket.remoteAddress;
+};
+
+
+/**
  * 请求构造sql查询语句 --fund
  * @param word
  * @returns {*}
@@ -50,5 +63,8 @@ module.exports = {
 	decrypt,
 	suc100,
 	err101,
+	getClientIP,
+
+	
 	whereSql
 }

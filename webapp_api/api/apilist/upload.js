@@ -17,7 +17,7 @@ function getIPAdress() {
     }
 }
 const myHost = getIPAdress();
-console.log(myHost)
+console.log(myHost+'---------------------------myHost')
 var db = require("../db"); //引入数据库封装模块
 var GlobalFunction = require('../../lib/js/GlobalFunction.js');//加密模块
 //上传图片必备中间件及文件夹
