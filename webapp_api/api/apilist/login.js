@@ -22,7 +22,6 @@ router.get('/', function(req, res, next) {
       res.send(GlobalFunction.err101('账号密码错误',results));
     }
   })
-  
 });
 
 /* GET index page. */

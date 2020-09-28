@@ -295,5 +295,13 @@ const myHost = getIPAdress();
 # 权限 及 分类 
 
 
+# userbiao 增加用户文集字段
+
+新增个人用户表  表名为 article+密码+1， 
+个人用户文章表     id主键自增  type主键自增为文集类型 article 为文章内容 artileTitle 为文章名字  time为文章创建修改时间
+
+insert into users (username,passwords,articleCollection) values ('yxg','12345678',"['type':1,name:'日记本']")
+
+
 
 https://www.cnblogs.com/ydam/p/10983572.html

@@ -63,7 +63,7 @@ fs.rename("uploads/"+req.file.filename,"uploads/"+time+'-'+req.file.originalname
   }else{
       console.log("ok------------------------------------------保存并修改成功")
       var imgSrc =":3000/statics/"+time+'-' + req.file.originalname;
-      var jsonData = {code:100,url:"/statics/"+time+'-' + req.file.originalname,ip:myHost+':3000'}
+      var jsonData = {code:100,url:"/statics/"+time+'-' + req.file.originalname,ip:'http://'+myHost+':3000'}
       res.send(jsonData);
   }
 
